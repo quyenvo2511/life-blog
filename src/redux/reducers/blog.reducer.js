@@ -22,6 +22,17 @@ const blogReducer = (state = initialState, action) => {
     case types.GET_BLOGS_FAILURE:
       return { ...state, loading: false };
 
+    case types.GET_BLOG_REQUEST:
+      return { ...state, loading: true };
+    case types.GET_BLOG_SUCCESS:
+      return {
+        ...state,
+        selectedBlog: payload,
+        loading: false,
+      };
+    case types.GET_BLOG_FAILURE:
+      return { ...state, loading: false };
+
     case types.WRITE_BLOG_REQUEST:
       return { ...state, loading: true };
     case types.WRITE_BLOG_SUCCESS:

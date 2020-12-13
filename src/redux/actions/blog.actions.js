@@ -13,6 +13,17 @@ const blogsRequest = (pageNum) => async (dispatch) => {
     dispatch({ type: types.GET_BLOGS_FAILURE, payload: null });
   }
 };
+
+const blogRequest = (blogId) => async (dispatch) => {
+  dispatch({ type: types.GET_BLOG_REQUEST, payload: null });
+  try {
+    const res = await api.get(`api/blogs/${blogId}`);
+    dispatch({ type: types.GET_BLOG_SUCCESS, payload: res.data.data });
+  } catch (error) {
+    dispatch({ type: types.GET_BLOG_FAILURE, payload: null });
+  }
+};
+
 const writeBlogRequest = (title, content, images, accessToken) => async (
   dispatch
 ) => {
@@ -84,6 +95,7 @@ const deleteBlogRequest = (blogId, accessToken) => async (dispatch) => {
 
 const blogActions = {
   blogsRequest,
+  blogRequest,
   writeBlogRequest,
   updateBlogRequest,
   deleteBlogRequest,

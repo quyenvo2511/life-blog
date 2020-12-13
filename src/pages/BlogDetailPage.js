@@ -36,7 +36,7 @@ const BlogDetailPage = () => {
 
   useEffect(() => {
     const accessToken = sessionStorage.getItem(ACCESS_TOKEN);
-    dispatch(blogActions.blogsRequest(params.id));
+    dispatch(blogActions.blogRequest(params.id));
     dispatch(userActions.getUsersRequest(accessToken));
   }, [dispatch]);
 
