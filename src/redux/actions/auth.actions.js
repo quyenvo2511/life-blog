@@ -9,6 +9,7 @@ const loginRequest = ({ email, password }) => async (dispatch) => {
     const res = await api.post(`/api/auth/login`, { email, password });
     dispatch(routeActions.redirect("/"));
     dispatch({ type: types.LOGIN_SUCCESS, payload: res.data.data });
+    sessionStorage.setItem(types.ACCESS_TOKEN, res.data.data.accessToken);
     toast.success(`Welcome ${res.data.data.user.name}`);
   } catch (error) {
     toast.error(error.message);

@@ -30,7 +30,9 @@ const HomePage = () => {
   const handleWriteBlog = () => {
     dispatch(routeActions.redirect(`/blog/add`));
   };
-
+  const handleCardClick = (blogId) => {
+    dispatch(routeActions.redirect(`/blogs/${blogId}`));
+  };
   return (
     <Container>
       <Card className="text-center">
@@ -63,6 +65,9 @@ const HomePage = () => {
                 <Card
                   className=" mt-5 d-flex flex-wrapped"
                   style={{ width: "200px", flex: "0 0 auto", height: "200px" }}
+                  onClick={() => {
+                    handleCardClick(blog._id);
+                  }}
                 >
                   {blog.images?.length > 0 && (
                     <Card.Img variant="top" src={blog.images[0]} />
@@ -76,7 +81,7 @@ const HomePage = () => {
                     >
                       @{blog.author.name} {moment().startOf("hour").fromNow()}
                     </Card.Footer>
-                  </Card.Body>{" "}
+                  </Card.Body>
                 </Card>
               ))}
             </CardDeck>

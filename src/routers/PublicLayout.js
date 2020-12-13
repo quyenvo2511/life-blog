@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { Route, Switch } from "react-router-dom";
 import PublicNavbar from "../components/PublicNavbar";
@@ -8,8 +9,19 @@ import LoginPage from "../pages/LoginPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import RegisterPage from "../pages/RegisterPage";
 import PrivateRoute from "./PrivateRoute";
+import authActions from "../redux/actions/auth.actions";
+import { useDispatch, useSelector } from "react-redux";
+import * as types from "../redux/constants/auth.constants";
 
 const PublicLayout = () => {
+  const isAuthenciated = useSelector((state) => state.auth.isAuthenciated);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const accessToken = sessionStorage.getItem(types.ACCESS_TOKEN);
+    if (accessToken && !isAuthenciated) {
+      dispatch(authActions.reLoginRequest(accessToken));
+    }
+  }, []);
   return (
     <>
       <PublicNavbar />

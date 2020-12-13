@@ -50,9 +50,7 @@ const AddEditBlogPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { title, content, images } = formData;
-    dispatch(
-      blogActions.updateBlogRequest(title, content, images, accessToken)
-    );
+    dispatch(blogActions.writeBlogRequest(title, content, images, accessToken));
   };
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
