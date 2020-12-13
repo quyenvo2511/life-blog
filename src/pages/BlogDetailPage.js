@@ -110,6 +110,7 @@ const BlogDetailPage = () => {
       ) : null}
       <h2>{blog?.title}</h2>
       <p>{blog?.content}</p>
+      <img alt="img" src={blog?.images[0]} />
       <p
         style={{ fontStyle: "italic", color: "gray" }}
       >{`@${blog?.author.name}`}</p>

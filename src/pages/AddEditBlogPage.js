@@ -11,7 +11,7 @@ const AddEditBlogPage = () => {
   const [formData, setFormData] = useState({
     title: "",
     content: "",
-    images: [],
+    images: "",
   });
   const userLoading = useSelector((state) => state.auth.Loading);
   const blog = useSelector((state) => state.blog.selectedBlog);
@@ -52,7 +52,8 @@ const AddEditBlogPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { title, content, images } = formData;
-    dispatch(blogActions.writeBlogRequest(title, content, images, accessToken));
+    const img = [images];
+    dispatch(blogActions.writeBlogRequest(title, content, img, accessToken));
   };
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -90,6 +91,14 @@ const AddEditBlogPage = () => {
             placeholder="Content"
             value={formData.content}
             name="content"
+            onChange={handleChange}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Form.Control
+            placeholder="Images"
+            value={formData.images}
+            name="images"
             onChange={handleChange}
           />
         </FormGroup>
