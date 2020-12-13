@@ -18,6 +18,7 @@ const PublicLayout = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     const accessToken = sessionStorage.getItem(types.ACCESS_TOKEN);
+    console.log("hi", accessToken, accessToken && !isAuthenciated);
     if (accessToken && !isAuthenciated) {
       dispatch(authActions.reLoginRequest(accessToken));
     }

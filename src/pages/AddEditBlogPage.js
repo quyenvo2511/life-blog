@@ -34,6 +34,8 @@ const AddEditBlogPage = () => {
   useEffect(() => {
     if (blogId) {
       dispatch(blogActions.blogRequest(blogId));
+    } else {
+      setFormData({ title: "", content: "", images: [] });
     }
   }, []);
 

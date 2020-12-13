@@ -69,7 +69,7 @@ const updateBlogRequest = (
       headers: header,
     });
     dispatch({ type: types.UPDATE_BLOG_SUCCESS, payload: null });
-    dispatch(routeActions.redirect(`admin/blogs/${blogId}`));
+    dispatch(routeActions.redirect(`/admin/blogs/${blogId}`));
     toast.success("Post updated! :)");
   } catch (error) {
     dispatch(routeActions.redirect(`/admin/blogs/${blogId}`));

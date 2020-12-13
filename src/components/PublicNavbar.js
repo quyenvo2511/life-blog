@@ -3,11 +3,16 @@ import { Navbar, Nav } from "react-bootstrap";
 import logo from "../images/logo.png";
 import { NavLink, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import * as types from "../redux/constants/auth.constants";
 
 const PublicNavbar = () => {
   const history = useHistory();
   const name = useSelector((state) => state.auth.user.name);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  const handleLogOut = () => {
+    sessionStorage.setItem(types.ACCESS_TOKEN, null);
+  };
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Brand>
@@ -28,7 +33,9 @@ const PublicNavbar = () => {
         {!isAuthenticated ? (
           <Nav.Link href="/register">Register</Nav.Link>
         ) : (
-          <Nav.Link href="/login">Log out</Nav.Link>
+          <Nav.Link onClick={() => handleLogOut()} href="/login">
+            Log out
+          </Nav.Link>
         )}
       </Nav>
     </Navbar>
