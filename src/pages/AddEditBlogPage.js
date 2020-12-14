@@ -52,7 +52,8 @@ const AddEditBlogPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const { title, content, images } = formData;
-    const img = [images];
+    const img = images.split(";");
+    console.log(img);
     dispatch(blogActions.writeBlogRequest(title, content, img, accessToken));
   };
   const handleChange = (e) => {
@@ -67,8 +68,10 @@ const AddEditBlogPage = () => {
   };
   const handleApplyChange = () => {
     const { title, content, images } = formData;
+    const img = images.split(";");
+    console.log("hi", img);
     dispatch(
-      blogActions.updateBlogRequest(title, content, images, accessToken, blogId)
+      blogActions.updateBlogRequest(title, content, img, accessToken, blogId)
     );
   };
   return userLoading || blogLoading ? (
