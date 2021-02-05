@@ -7,6 +7,7 @@ const getUsersRequest = (accessToken) => async (dispatch) => {
   try {
     const header = { Authorization: `Bearer ${accessToken}` };
     const res = await api.get("/api/users", { headers: header });
+    console.log("check", res.data.data.users);
     dispatch({ type: types.GET_USERS_SUCCESS, payload: res.data.data.users });
   } catch (error) {
     toast.error("Error getting all users");

@@ -40,7 +40,7 @@ const writeBlogRequest = (title, content, images, accessToken) => async (
     };
 
     const res = await api.post("/api/blogs", body, { headers: header });
-    dispatch({ type: types.WRITE_BLOG_SUCCESS, payload: null });
+    dispatch({ type: types.WRITE_BLOG_SUCCESS, payload: res.data.data });
     dispatch(routeActions.redirect("/"));
     toast.success("New post created!");
   } catch (error) {
@@ -68,7 +68,7 @@ const updateBlogRequest = (
     const res = await api.put(`/api/blogs/${blogId}`, body, {
       headers: header,
     });
-    dispatch({ type: types.UPDATE_BLOG_SUCCESS, payload: null });
+    dispatch({ type: types.UPDATE_BLOG_SUCCESS, payload: res.data.data });
     dispatch(routeActions.redirect(`/admin/blogs/${blogId}`));
     toast.success("Post updated! :)");
   } catch (error) {
@@ -84,7 +84,7 @@ const deleteBlogRequest = (blogId, accessToken) => async (dispatch) => {
       Authorization: `Bearer ${accessToken}`,
     };
     const res = await api.delete(`/api/blogs/${blogId}`, { headers: header });
-    dispatch({ type: types.DELETE_BLOG_SUCCESS, payload: null });
+    dispatch({ type: types.DELETE_BLOG_SUCCESS, payload: res.data.data });
     dispatch(routeActions.redirect("/"));
     toast.success("Post deleted :)");
   } catch (error) {

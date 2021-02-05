@@ -30,6 +30,7 @@ const registerAccount = ({ avatarUrl, name, email, password }) => async (
     });
     dispatch({ type: types.REGISTER_SUCCESS, payload: res.data.data });
     dispatch(routeActions.redirect("/login"));
+
     toast.success(`Welcome ${res.data.data.user.name}`);
   } catch (error) {
     dispatch({ type: types.REGISTER_FAILURE, payload: null });

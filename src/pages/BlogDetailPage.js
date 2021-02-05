@@ -81,16 +81,20 @@ const BlogDetailPage = () => {
 
   const ReviewList = () => {
     const getUserName = (userId) => {
-      const name = users.filter((user) => user._id === userId)[0].name;
-      console.log(name);
+      console.log("check users", users);
+      console.log("check userid", userId);
+      const user = users.filter((user) => user._id === userId);
+      const name = user.length > 0 ? user[0].name : "undefined";
+      console.log("check user", user);
 
       return name;
     };
+    console.log("reviewa", reviews);
 
     return reviews.length > 0
       ? reviews.map((review) => {
-          const name = getUserName(review.user);
-          return <ReviewCard author={name} content={review.content} />;
+          const user = getUserName(review.user);
+          return <ReviewCard author={user} content={review.content} />;
         })
       : null;
   };
